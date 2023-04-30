@@ -90,10 +90,10 @@ td {
 }
 
 
-.table-striped>tbody>tr:nth-child(even)>td,
+/* .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: var(--secondary);
-}
+} */
 
 
 

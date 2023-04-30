@@ -1,5 +1,6 @@
 
 async function dataFill() {
+
     const url = "https://jsonplaceholder.typicode.com/users"
     const response = await fetch(url);
     const data = await response.json();
@@ -20,6 +21,17 @@ async function dataFill() {
     document.getElementById("tableBody").innerHTML = tableBody;
 
 
+    // Set the original row background colors
+    const tableRows = document.querySelectorAll("#tableBody tr");
+
+    for (let i = 0; i < tableRows.length; i++) {
+        if (i % 2 == 0) {
+            tableRows[i].style.backgroundColor = 'var(--white)';
+        } else {
+            tableRows[i].style.backgroundColor = 'var(--secondary)';
+        }
+    }
+
 }
 
 dataFill()
@@ -30,15 +42,19 @@ parentElement.addEventListener("click", (event) => {
     if (event.target.type === "checkbox") {
         // Check if checkbox is selected
         if (event.target.checked) {
-            console.log("Checkbox is selected");
             let checkedRow = event.target.parentElement.parentElement;
             checkedRow.style.backgroundColor = 'var(--green)';
             checkedRow.style.color = 'var(--white)';
-
         } else {
-            console.log("Checkbox is not selected");
             let checkedRow = event.target.parentElement.parentElement;
-            checkedRow.style.backgroundColor = 'var(--white)';
+
+            // Set the row background color based on its index
+            let index = Array.from(parentElement.children).indexOf(checkedRow);
+            if (index % 2 == 0) {
+                checkedRow.style.backgroundColor = 'var(--white)';
+            } else {
+                checkedRow.style.backgroundColor = 'var(--secondary)';
+            }
             checkedRow.style.color = 'var(--primary)';
         }
     }
